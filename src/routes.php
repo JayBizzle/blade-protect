@@ -15,7 +15,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('__blade-protect', function () {
 
         if (random_int(1, 100) <= 2) {
-            \Jaybizzle\BladeProtect\Models\Protect::where('user_id', auth()->user()->getKey())->where('updated_at', '<=', now()->subSeconds(20))->delete();
+            \Jaybizzle\BladeProtect\Models\Protect::where('updated_at', '<=', now()->subSeconds(20))->delete();
         }
 
         $data = explode(':', json_decode(request()->getContent()));
