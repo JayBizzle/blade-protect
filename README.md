@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/jaybizzle/blade-protect.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/blade-protect)
 
 
-This is where your description should go. Try and limit it to a paragraph or two.
+Prevent concurrent edits of the same resource by multiple users.
 
 ## Installation
 
@@ -19,7 +19,7 @@ composer require jaybizzle/blade-protect
 ```
 php artisan vendor:publish --provider="Jaybizzle\BladeProtect\BladeProtectServiceProvider" --tag="migrations"
 ```
-After the migration has been published you can create the media-table by running the migrations:
+After the migration has been published you can create the `protected` table by running the migrations:
 
 ```
 php artisan migrate
