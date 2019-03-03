@@ -1,4 +1,4 @@
-# Very short description of the package
+# Blade Protect
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jaybizzle/blade-protect.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/blade-protect)
 [![Build Status](https://img.shields.io/travis/jaybizzle/blade-protect/master.svg?style=flat-square)](https://travis-ci.org/jaybizzle/blade-protect)
