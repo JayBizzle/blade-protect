@@ -37,8 +37,15 @@ class BladeProtectServiceProvider extends ServiceProvider
                 return '<?php echo "<input class=\"__blade_protect\" type=\"hidden\" value=\"'.$arg1.':'.$arg2.'\">"; ?>';
             });
 
-            $bladeCompiler->directive('protected', function ($arguments) {
-                return Jaybizzle\BladeProtect\Models\Protect::query()
+            $bladeCompiler->if('protected', function ($name, $identifier) {
+
+                static $result = [];
+
+                if (isset($result[$name][$identifier])) {
+                    return $result[$name][$identifier];
+                }
+
+                return $result[$name][$identifier] = \Jaybizzle\BladeProtect\Models\Protect::query()
                     ->where([
                         'name' => $name,
                         'identifier' => $identifier,
