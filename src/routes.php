@@ -12,7 +12,9 @@
 */
 
 Route::middleware(['web'])->group(function () {
+
+    \Debugbar::disable();
     Route::post('__blade-protect', function () {
-        new \Jaybizzle\BladeProtect\BladeProtect();
+        return new \Jaybizzle\BladeProtect\BladeProtect();
     });
 });

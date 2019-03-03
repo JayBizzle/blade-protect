@@ -15,7 +15,7 @@ class BladeProtect
     public function __construct()
     {
         $this->model = new Protect;
-        $this->user_id = auth()->user()->getKey();
+        $this->user_id = auth()->user()->getKey() ?? null;
         $this->data = $this->getData(request()->getContent());
 
         if ($this->shouldCleanup()) {
@@ -24,23 +24,24 @@ class BladeProtect
 
         if (! $protected = $this->isLocked()) {
             $this->createLock();
-        } else if($protected->user_id == $this->user_id) {
+        } else if ($protected->user_id == $this->user_id) {
             $this->renewLock($protected);
         }
-
-        return 'OK';
     }
 
     public function isLocked()
     {
-        return $this->model->where(['name' => $this->data[0], 'identifier' => $this->data[1]])->where('updated_at', '>=', now()->subSeconds(20))->first();
+        return $this->model
+            ->where(['name' => $this->data[0], 'identifier' => $this->data[1]])
+            ->where('updated_at', '>=', now()->subSeconds(20))
+            ->first();
     }
 
     public function createLock()
     {
         $this->model->create([
             'name' => $this->data[0],
-            'user_id' => auth()->user()->getKey() ?? null,
+            'user_id' => $this->user_id,
             'identifier' => $this->data[1],
         ]);
     }
@@ -48,6 +49,7 @@ class BladeProtect
     public function renewLock($protected)
     {
         $protected->updated_at = now();
+
         $protected->save();
     }
 
@@ -65,5 +67,10 @@ class BladeProtect
     public function getData($data)
     {
         return explode(':', json_decode($data));
+    }
+
+    public function __toString()
+    {
+        return json_encode('ok');
     }
 }
