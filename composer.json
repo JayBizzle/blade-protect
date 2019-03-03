@@ -1,0 +1,50 @@
+{
+    "name": "jaybizzle/blade-protect",
+    "description": "Protect parts of blade templates being edited by multiple users.",
+    "keywords": [
+        "jaybizzle",
+        "blade-protect"
+    ],
+    "homepage": "https://github.com/jaybizzle/blade-protect",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mark Beech",
+            "email": "mbeech@mark-beech.co.uk",
+            "homepage": "https://ma.rkbee.ch",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "larapack/dd": "^1.0",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jaybizzle\\BladeProtect\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jaybizzle\\BladeProtect\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jaybizzle\\BladeProtect\\BladeProtectServiceProvider"
+            ]
+        }
+    }
+}
