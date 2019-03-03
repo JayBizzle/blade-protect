@@ -13,24 +13,6 @@
 
 Route::middleware(['web'])->group(function () {
     Route::post('__blade-protect', function () {
-
-        if (random_int(1, 100) <= 2) {
-            \Jaybizzle\BladeProtect\Models\Protect::where('updated_at', '<=', now()->subSeconds(20))->delete();
-        }
-
-        $data = explode(':', json_decode(request()->getContent()));
-
-        $protected = \Jaybizzle\BladeProtect\Models\Protect::where(['name' => $data[0], 'identifier' => $data[1]])->where('updated_at', '>=', now()->subSeconds(20))->first();
-
-        if (! $protected) {
-            \Jaybizzle\BladeProtect\Models\Protect::create([
-                'name' => $data[0],
-                'user_id' => auth()->user()->getKey() ?? null,
-                'identifier' => $data[1],
-            ]);
-        } elseif ($protected->user_id == auth()->user()->getKey()) {
-            $protected->updated_at = now();
-            $protected->save();
-        }
+        new \Jaybizzle\BladeProtect\BladeProtect();
     });
 });
