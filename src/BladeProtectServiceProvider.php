@@ -20,7 +20,7 @@ class BladeProtectServiceProvider extends ServiceProvider
             ], 'public');
 
             $this->publishes([
-                __DIR__.'/../database/migrations/created_protected_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_created_protected_table.php'),
+                __DIR__.'/../database/migrations/create_protected_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_protected_table.php'),
             ], 'migrations');
         }
     }
