@@ -3,6 +3,7 @@
 namespace Jaybizzle\BladeProtect;
 
 use Illuminate\Support\ServiceProvider;
+use Jaybizzle\BladeProtect\Models\Protect;
 use Illuminate\View\Compilers\BladeCompiler;
 
 class BladeProtectServiceProvider extends ServiceProvider
@@ -44,7 +45,7 @@ class BladeProtectServiceProvider extends ServiceProvider
                     return $result[$name][$identifier];
                 }
 
-                return $result[$name][$identifier] = \Jaybizzle\BladeProtect\Models\Protect::query()
+                return $result[$name][$identifier] = Protect::query()
                     ->where([
                         'name' => $name,
                         'identifier' => $identifier,
