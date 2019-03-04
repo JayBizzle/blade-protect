@@ -32,13 +32,12 @@ class BladeProtectServiceProvider extends ServiceProvider
     {
         $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
             $bladeCompiler->directive('protect', function ($arguments) {
-                list($arg1, $arg2) = explode(',',str_replace(['(',')',' ', "'"], '', $arguments));
+                list($arg1, $arg2) = explode(',', str_replace(['(', ')', ' ', "'"], '', $arguments));
 
                 return '<?php echo "<input class=\"__blade_protect\" type=\"hidden\" value=\"'.$arg1.':'.$arg2.'\">"; ?>';
             });
 
             $bladeCompiler->if('protected', function ($name, $identifier) {
-
                 static $result = [];
 
                 if (isset($result[$name][$identifier])) {
