@@ -14,7 +14,7 @@ class BladeProtect
 
     public function __construct()
     {
-        $this->model = new Protect;
+        $this->model = new Protect();
         $this->user_id = auth()->user()->getKey() ?? null;
         $this->data = $this->getData(request()->getContent());
 
@@ -22,9 +22,9 @@ class BladeProtect
             $this->cleanup();
         }
 
-        if (! $protected = $this->isLocked()) {
+        if (!$protected = $this->isLocked()) {
             $this->createLock();
-        } else if ($protected->user_id == $this->user_id) {
+        } elseif ($protected->user_id == $this->user_id) {
             $this->renewLock($protected);
         }
     }
@@ -40,8 +40,8 @@ class BladeProtect
     public function createLock()
     {
         $this->model->create([
-            'name' => $this->data[0],
-            'user_id' => $this->user_id,
+            'name'       => $this->data[0],
+            'user_id'    => $this->user_id,
             'identifier' => $this->data[1],
         ]);
     }
@@ -62,7 +62,6 @@ class BladeProtect
     {
         $this->model->where('updated_at', '<=', now()->subSeconds(20))->delete();
     }
-
 
     public function getData($data)
     {
