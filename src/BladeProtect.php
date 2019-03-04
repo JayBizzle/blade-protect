@@ -22,7 +22,7 @@ class BladeProtect
             $this->cleanup();
         }
 
-        if (!$protected = $this->isLocked()) {
+        if (! $protected = $this->isLocked()) {
             $this->createLock();
         } elseif ($protected->user_id == $this->user_id) {
             $this->renewLock($protected);
