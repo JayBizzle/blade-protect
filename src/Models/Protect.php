@@ -11,7 +11,7 @@ class Protect extends Model
      *
      * @var string
      */
-    protected $table = 'protect';
+    protected $table = 'protected';
 
     public $fillable = ['name', 'user_id', 'identifier'];
 }
