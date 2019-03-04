@@ -40,8 +40,8 @@ class BladeProtect
     public function createLock()
     {
         $this->model->create([
-            'name'       => $this->data[0],
-            'user_id'    => $this->user_id,
+            'name' => $this->data[0],
+            'user_id' => $this->user_id,
             'identifier' => $this->data[1],
         ]);
     }
