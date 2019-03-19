@@ -12,5 +12,5 @@
 */
 
 Route::middleware(['web'])->group(function () {
-    Route::post('__blade-protect', '\Jaybizzle\BladeProtect\BladeProtect@__construct');
+    Route::post('__blade-protect', '\Jaybizzle\BladeProtect\BladeProtect@run');
 });
