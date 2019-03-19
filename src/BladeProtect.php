@@ -12,7 +12,7 @@ class BladeProtect
 
     protected $data;
 
-    public function __construct()
+    public function run()
     {
         $this->model = new Protect();
         $this->user_id = auth()->user()->getKey() ?? null;
